@@ -9,6 +9,16 @@ export const s3 = new AWS.S3({
   params: { Bucket: config.aws_media_bucket },
 });
 
+//AWS credentials
+
+const credentials = new AWS.Credentials({
+  accessKeyId: config.aws_access_key,
+  secretAccessKey: config.aws_secret,
+});
+
+AWS.config.credentials = credentials;
+
+
 // Generates an AWS signed URL for retrieving objects
 export function getGetSignedUrl(key: string): string {
   const signedUrlExpireSeconds = 60 * 5;
