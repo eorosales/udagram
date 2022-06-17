@@ -10,6 +10,8 @@ jobs:
     steps:
       - node/install:
           node-version: "16.13.0"
+      - aws-cli/setup
+      - eb/setup
       - checkout
       - run:
           name: Install Front-End Dependencies
@@ -31,29 +33,8 @@ jobs:
           name: API Build
           command: |
             npm run api:build
-  deploy:
-    docker:
-      - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
-    steps:
-      - node/install:
-          node-version: "16.13.0"
-      - eb/setup:
-          AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-          AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-      - aws-cli/setup:
-          AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-          AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-      - checkout
-      - run:
+       - run:
           name: Deploy App
           command: |
             npm run frontend:deploy
             npm run api:deploy
-workflows:
-  udagram:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
