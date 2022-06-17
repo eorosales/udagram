@@ -33,8 +33,7 @@ jobs:
        - run:
           name: Deploy App
           command: |
-            npm run frontend:deploy
-            npm run api:deploy
+            npm run frontend:deploy && npm run api:deploy
   deploy:
     docker:
       - image: "cimg/base:stable"
