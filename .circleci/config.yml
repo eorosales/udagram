@@ -39,13 +39,11 @@ jobs:
       - node/install:
           node-version: "16.13.0"
       - eb/setup:
-          auth:
-            AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-            AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+          AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+          AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
       - aws-cli/setup:
-          auth:
-            AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-            AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+          AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+          AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
       - checkout
       - run:
           name: Deploy App
