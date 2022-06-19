@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Eb Init
           command: |
-            eb init
+            eb init --platform node.js-16 --region $AWS_DEFAULT_REGION
       - run:
           name: Set EB Env Vars
           command: |
